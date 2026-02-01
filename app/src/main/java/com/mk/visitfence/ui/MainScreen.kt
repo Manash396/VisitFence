@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mk.visitfence.ui.component.BottomNavigationBar
+import com.mk.visitfence.ui.map.MapScreen
 import com.mk.visitfence.util.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,7 +37,7 @@ fun MainScreen(){
             modifier = Modifier.padding(paddingValues)
         ){
             composable(Screen.Map.route){
-
+                MapScreen()
             }
             composable(Screen.Geofences.route){
 
