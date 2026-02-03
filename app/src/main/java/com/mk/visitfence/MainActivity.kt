@@ -11,6 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.mk.visitfence.data.local.DatabaseProvider
+import com.mk.visitfence.data.repository.GeofenceRepository
+import com.mk.visitfence.geofence.GeofenceManager
 import com.mk.visitfence.ui.MainScreen
 import com.mk.visitfence.ui.theme.VisitFenceTheme
 
@@ -19,10 +22,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-
+        val db = DatabaseProvider.provideDatabase(applicationContext)
+        val gm = GeofenceManager(this)
+        val repo = GeofenceRepository(db.geofenceDao(), db.visitfenceDao(), gm)
         setContent {
             VisitFenceTheme {
-                MainScreen()
+                MainScreen(repo)
             }
         }
     }

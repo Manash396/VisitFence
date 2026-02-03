@@ -8,13 +8,20 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.12.3"
 composeBom = "2026.01.01"
-mapsCompose = "2.7.2"
-mapsComposeUtils = "7.0.0"
-mapsComposeWidgets = "2.7.2"
+mapsCompose = "8.0.0"
+mapsComposeUtils = "8.0.0"
+mapsComposeWidgets = "8.0.0"
 navigationCompose = "2.9.7"
+playServicesLocation = "21.3.0"
 playServicesMaps = "20.0.0"
+room_version = "2.8.4"
+ksp = "2.2.20-2.0.4"
 
 [libraries]
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
+androidx-room-runtime = {group = "androidx.room", name = "room-runtime", version.ref = "room_version"}
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -35,6 +42,7 @@ maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = 
 maps-compose-utils = { module = "com.google.maps.android:maps-compose-utils", version.ref = "mapsComposeUtils" }
 maps-compose-widgets = { module = "com.google.maps.android:maps-compose-widgets", version.ref = "mapsComposeWidgets" }
 
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 
 [plugins]
@@ -42,3 +50,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
+ksp-android = { id = "com.google.devtools.ksp" , version.ref = "ksp"}

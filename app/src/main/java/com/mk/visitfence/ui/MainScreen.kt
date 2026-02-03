@@ -6,24 +6,56 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.mk.visitfence.data.repository.GeofenceRepository
 import com.mk.visitfence.ui.component.BottomNavigationBar
+import com.mk.visitfence.ui.geofenceList.GeofenceListScreen
+import com.mk.visitfence.ui.geofenceList.GeofenceListViewModel
+import com.mk.visitfence.ui.geofenceList.GeofenceListViewModelFactory
 import com.mk.visitfence.ui.map.MapScreen
+import com.mk.visitfence.ui.map.MapScreenViewModel
+import com.mk.visitfence.ui.map.MapScreenViewModelFactory
+import com.mk.visitfence.ui.visits.VisitListScreen
+import com.mk.visitfence.ui.visits.VisitListViewModel
+import com.mk.visitfence.ui.visits.VisitListViewModelFactory
 import com.mk.visitfence.util.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(){
+fun MainScreen(repo : GeofenceRepository){
     val navController  = rememberNavController()
 
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    val title  = when(currentRoute){
+        Screen.Geofences.route -> Screen.Geofences.title
+        Screen.Visits.route -> Screen.Visits.title
+        else -> "VisitFence"
+    }
+
+    val mapScreenViewModel : MapScreenViewModel = viewModel(
+        factory = MapScreenViewModelFactory(repo)
+    )
+
+    val visitListViewModel : VisitListViewModel = viewModel(
+        factory = VisitListViewModelFactory(repo)
+    )
+
+    val geofenceListViewModel : GeofenceListViewModel = viewModel(
+        factory = GeofenceListViewModelFactory(repo)
+    )
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "VisitFence")
+                    Text(text = title)
                 }
             )
         },
@@ -37,13 +69,13 @@ fun MainScreen(){
             modifier = Modifier.padding(paddingValues)
         ){
             composable(Screen.Map.route){
-                MapScreen()
+                MapScreen(mapScreenViewModel)
             }
             composable(Screen.Geofences.route){
-
+                GeofenceListScreen(geofenceListViewModel)
             }
             composable(Screen.Visits.route){
-
+                VisitListScreen(visitListViewModel)
             }
         }
     }
