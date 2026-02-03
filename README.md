@@ -8,7 +8,7 @@ The app is designed to work reliably on **Android 10 (API 29) and above**, follo
 
 ---
 ## Video Link :-
- 
+ https://www.linkedin.com/posts/manash-khatowal-130bb4249_built-visitfence-android-geofencing-activity-7424487833840775168-ucA-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2UarQBD2l7XKILTuFmo2kChxJ-oANXLtM
 
 ## 🎯 Key Features
 
